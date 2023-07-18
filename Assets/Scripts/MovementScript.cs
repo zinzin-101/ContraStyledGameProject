@@ -57,7 +57,7 @@ public class MovementScript : MonoBehaviour
 
     public void Jump(float power)
     {
-        if (!grounded)
+        if (!grounded || !canMove)
         {
             return;
         }
@@ -91,5 +91,10 @@ public class MovementScript : MonoBehaviour
     public void AddForce(Vector3 value)
     {
         rb.AddForce(value);
+    }
+
+    public Vector3 GetCurrentVelocity()
+    {
+        return rb.velocity;
     }
 }

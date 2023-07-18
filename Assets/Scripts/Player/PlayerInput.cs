@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInput : PawnInput
+public class PlayerInput : MonoBehaviour
 {
     private MovementScript movementScript;
     private PlayerProjectileSpawner projectileSpawner;

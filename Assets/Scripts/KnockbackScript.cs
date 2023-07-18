@@ -7,10 +7,14 @@ public class KnockbackScript : MonoBehaviour
     [SerializeField] PlayerHealthScript healthScript;
     [SerializeField] MovementScript movementScript;
     [SerializeField] float knockbackVelocity = 3f;
-    [SerializeField] float knockbackDuration = 0.5f;
-    [SerializeField] float knockBackGravity = 2.5f;
+    [SerializeField] float verticalKnockbackVelocity = 3f;
 
+    [SerializeField] float knockbackDuration = 0.5f;
+    private float knockbackTimer;
     private bool canKnockback;
+    private float previousVelocityY;
+
+    private Vector3 knockbackDirection;
 
     private void Awake()
     {
@@ -22,6 +26,7 @@ public class KnockbackScript : MonoBehaviour
     private void Start()
     {
         canKnockback = true;
+        knockbackTimer = knockbackDuration;
     }
 
     private void Update()
@@ -29,34 +34,40 @@ public class KnockbackScript : MonoBehaviour
         if (!healthScript.CanTakeDamage && canKnockback)
         {
             canKnockback = false;
-            StartCoroutine(InitiateKnockback());
+            InitiateKnockback();
         }
+
+        if (!canKnockback)
+        {
+            knockbackTimer -= Time.deltaTime;
+            
+            if (knockbackTimer <= 0f)
+            {
+                canKnockback = true;
+                movementScript.SetRigidbodyVelocity(new Vector3(0f, previousVelocityY, 0f));
+                movementScript.SetToggleMove(true);
+            }
+        }
+        else
+        {
+            knockbackTimer = knockbackDuration;
+        }
+
+
     }
 
-    IEnumerator InitiateKnockback()
+    void InitiateKnockback()
     {
         movementScript.SetToggleMove(false);
-        Vector2 _direction = Vector2.zero;
+        previousVelocityY = movementScript.GetCurrentVelocity().y;
+        Vector2 _direction = new Vector2(knockbackDirection.x, verticalKnockbackVelocity + knockbackDirection.y);
+        _direction.x *= knockbackVelocity;
+        movementScript.SetRigidbodyVelocity(_direction * movementScript.KnockbackMultiplier);
+    }
 
-        switch (movementScript.FacingRight)
-        {
-            case true:
-                _direction.x = -1;
-                break;
-            case false:
-                _direction.x = 1;
-                break;
-        }
-        _direction.x *= movementScript.KnockbackMultiplier;
-        Vector2 _velocity = _direction * knockbackVelocity;
-        movementScript.SetRigidbodyVelocity(_velocity);
-        //movementScript.SetRigidbodyGravity(knockBackGravity);
-
-        yield return new WaitForSeconds(knockbackDuration);
-        movementScript.SetRigidbodyVelocity(Vector3.zero);
-        //movementScript.SetRigidbodyGravity(1f);
-        movementScript.SetToggleMove(true);
+    public void TriggerKnockback(Vector3 direction)
+    {
         canKnockback = true;
-        //
+        knockbackDirection = direction;
     }
 }

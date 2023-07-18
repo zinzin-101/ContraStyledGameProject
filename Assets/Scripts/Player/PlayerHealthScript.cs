@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerHealthScript : MonoBehaviour
 {
-    private MovementScript moveScript;
+    [SerializeField] KnockbackScript knockbackScript;
 
     [SerializeField] Collider2D hitbox;
     [SerializeField] int playerHealth = 10;
@@ -20,7 +20,7 @@ public class PlayerHealthScript : MonoBehaviour
 
     private void Awake()
     {
-        TryGetComponent(out MovementScript moveScript);
+        TryGetComponent(out KnockbackScript knockbackScript);
         playerAlive = true;
         canTakeDamage = true;
     }
@@ -45,6 +45,9 @@ public class PlayerHealthScript : MonoBehaviour
             }
             canTakeDamage = false;
             
+            Vector3 _hitDirection = (transform.position - collision.gameObject.transform.position).normalized;
+            knockbackScript.TriggerKnockback(_hitDirection);
+
             playerHealth -= enemyDamage.Damage;
             Debug.Log("damage taken");
             StartCoroutine(DamageCoolDown(takeDamageCoolDown));
