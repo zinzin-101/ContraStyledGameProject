@@ -1,0 +1,4 @@
+repository "ContraStyledGamePrototype@ANS_Interact@cloud"
+  path "/"
+    br "/main"
+    co "/main"
