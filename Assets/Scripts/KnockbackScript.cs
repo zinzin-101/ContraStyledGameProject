@@ -16,13 +16,6 @@ public class KnockbackScript : MonoBehaviour
 
     private Vector3 knockbackDirection;
 
-    private void Awake()
-    {
-        TryGetComponent(out PlayerHealthScript healthScript);
-        TryGetComponent(out MovementScript movementScript);
-        TryGetComponent(out Rigidbody2D rb);
-    }
-
     private void Start()
     {
         canKnockback = true;

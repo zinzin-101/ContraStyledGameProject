@@ -12,7 +12,6 @@ public class RangeEnemy : MonoBehaviour
 
     [Header("Projectile Parameter")]
     [SerializeField] private Transform firepoint;
-    [SerializeField] private GameObject[] bullet;
     [SerializeField] private GameObject bulletS;
     [SerializeField] private float _bulletSpeed;
 
@@ -28,16 +27,5 @@ public class RangeEnemy : MonoBehaviour
             var projectile = Instantiate(bulletS,firepoint.position,firepoint.rotation);
             projectile.GetComponent<Rigidbody2D>().velocity = firepoint.up * _bulletSpeed;
         }
-    }
-    private int FindBullet()
-    {
-        for (int i = 0; i < bullet.Length; i++)
-        {
-            if (!bullet[i].activeInHierarchy)
-            {
-                return i;
-            }
-        }
-        return 0;
     }
 }

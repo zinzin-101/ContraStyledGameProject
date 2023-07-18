@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 7029000148509265092}
   - component: {fileID: 3901414506172560534}
   - component: {fileID: 6116166816560234515}
+  - component: {fileID: 1774279986168049034}
   - component: {fileID: 8755266916395143792}
   - component: {fileID: 1269520840004550585}
   m_Layer: 7
@@ -277,7 +278,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   groundCheckRadius: 0
-  knockbackMultiplier: 0.5
+  knockbackMultiplier: 0.8
 --- !u!114 &3901414506172560534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,6 +307,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 2
   hitbox: {fileID: 1250950418896651523}
+  enemyKnockbackScript: {fileID: 1774279986168049034}
+--- !u!114 &1774279986168049034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3447391572522750490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c3ef0854322b544d85ab3d782c0c854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackForce: 10000
+  knockbackDuration: 0.1
 --- !u!50 &8755266916395143792
 Rigidbody2D:
   serializedVersion: 4
@@ -321,7 +337,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

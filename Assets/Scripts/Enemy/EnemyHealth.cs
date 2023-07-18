@@ -8,6 +8,8 @@ public class EnemyHealth : MonoBehaviour
     private int health;
     [SerializeField] Collider2D hitbox;
 
+    [SerializeField] EnemyKnockback enemyKnockbackScript;
+
     private void Start()
     {
         health = maxHealth;
@@ -26,6 +28,8 @@ public class EnemyHealth : MonoBehaviour
         if (collision.gameObject.TryGetComponent<PlayerProjectile>(out PlayerProjectile projectile))
         {
             health -= projectile.Damage;
+            Vector3 _hitDirection = (transform.position - collision.gameObject.transform.position).normalized;
+            StartCoroutine(enemyKnockbackScript.KnockbackForEnemy(_hitDirection));
             Destroy(collision.gameObject);
         }
     }
