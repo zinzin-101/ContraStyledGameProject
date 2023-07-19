@@ -307,6 +307,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 2
   hitbox: {fileID: 1250950418896651523}
+  _healingTank: {fileID: 5761979222050563027, guid: c59792fdde1c2f04a82c6a456c315fb3, type: 3}
+  _hpDropRate: 0
+  canDropHealth: 0
   enemyKnockbackScript: {fileID: 1774279986168049034}
 --- !u!114 &1774279986168049034
 MonoBehaviour:

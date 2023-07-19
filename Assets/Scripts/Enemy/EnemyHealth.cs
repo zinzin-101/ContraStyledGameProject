@@ -8,10 +8,16 @@ public class EnemyHealth : MonoBehaviour
     private int health;
     [SerializeField] Collider2D hitbox;
 
+    [SerializeField] HealingTank _healingTank;
+    [SerializeField] float _hpDropRate;
+    [SerializeField] bool canDropHealth;
+    private float rnd;
+
     [SerializeField] EnemyKnockback enemyKnockbackScript;
 
     private void Start()
     {
+        rnd = Random.value;
         health = maxHealth;
     }
 
@@ -19,6 +25,12 @@ public class EnemyHealth : MonoBehaviour
     {
         if (health <= 0)
         {
+            if (rnd <= 0.1f && canDropHealth)
+            {
+                _healingTank = Instantiate(_healingTank, transform.position, Quaternion.identity);
+
+            }
+
             Destroy(gameObject);
         }
     }

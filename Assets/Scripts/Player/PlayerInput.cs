@@ -12,10 +12,13 @@ public class PlayerInput : MonoBehaviour
     float horizontalInput = 0f;
     bool jumpInput;
 
+    [SerializeField] AnimController animController;
+
     void Start()
     {
         TryGetComponent(out movementScript);
         TryGetComponent(out  projectileSpawner);
+        TryGetComponent(out  animController);
     }
 
     void Update()
@@ -36,6 +39,8 @@ public class PlayerInput : MonoBehaviour
     private void FixedUpdate()
     {
         movementScript.Move(horizontalInput);
+
+        animController.SetFloat("Speed", Mathf.Abs(horizontalInput));
 
         if (jumpInput)
         {

@@ -322,7 +322,6 @@ MonoBehaviour:
   _range: 10
   _dmg: 0
   firepoint: {fileID: 608037417512436481}
-  bullet: []
   bulletS: {fileID: 9036119814809654161, guid: 16f06f89230cb3f4998c14bced9212f5, type: 3}
   _bulletSpeed: 10
 --- !u!114 &3572318056977825687
@@ -339,6 +338,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 5
   hitbox: {fileID: 562549548906287356}
+  _healingTank: {fileID: 5761979222050563027, guid: c59792fdde1c2f04a82c6a456c315fb3, type: 3}
+  _hpDropRate: 0
+  canDropHealth: 0
   enemyKnockbackScript: {fileID: 6162675416532748119}
 --- !u!114 &6162675416532748119
 MonoBehaviour:

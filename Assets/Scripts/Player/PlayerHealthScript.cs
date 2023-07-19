@@ -7,8 +7,10 @@ public class PlayerHealthScript : MonoBehaviour
     [SerializeField] KnockbackScript knockbackScript;
 
     [SerializeField] Collider2D hitbox;
+    [SerializeField] int maxPlayerHealth = 10;
     [SerializeField] int playerHealth = 10;
     public int PlayerHealth => playerHealth;
+    public int MaxPlayerHealth => maxPlayerHealth;
 
     private bool playerAlive;
     public bool PlayerAlive => playerAlive;
@@ -18,9 +20,12 @@ public class PlayerHealthScript : MonoBehaviour
     private bool canTakeDamage;
     public bool CanTakeDamage => canTakeDamage;
 
+    [SerializeField] UIHeartScript heartScript;
+
     private void Awake()
     {
         TryGetComponent(out KnockbackScript knockbackScript);
+        playerHealth = maxPlayerHealth;
         playerAlive = true;
         canTakeDamage = true;
     }
@@ -31,6 +36,11 @@ public class PlayerHealthScript : MonoBehaviour
         {
             playerAlive = false;
             Destroy(gameObject);
+        }
+
+        if (playerHealth > maxPlayerHealth)
+        {
+            playerHealth = maxPlayerHealth;
         }
     }
 
@@ -44,12 +54,14 @@ public class PlayerHealthScript : MonoBehaviour
                 return;
             }
             canTakeDamage = false;
-            
+
             Vector3 _hitDirection = (transform.position - collision.gameObject.transform.position).normalized;
             knockbackScript.TriggerKnockback(_hitDirection);
 
-            playerHealth -= enemyDamage.Damage;
-            Debug.Log("damage taken");
+            playerHealth -= enemyDamage.Damage; 
+
+            heartScript.RenderHeart();
+
             StartCoroutine(DamageCoolDown(takeDamageCoolDown));
 
             if (collision.gameObject.TryGetComponent(out EnemyProjectile projectile))
@@ -57,17 +69,18 @@ public class PlayerHealthScript : MonoBehaviour
                 Destroy(collision.gameObject);
             }
         }
-        /*
-        if (collision.gameObject.TryGetComponent(HealScript healScript)
-        {
-            playerHealth += healScript.heal
-        }
-        */
+        
     }
 
     IEnumerator DamageCoolDown(float duration)
     {
         yield return new WaitForSeconds(duration);
         canTakeDamage = true;
+    }
+
+    public void Heal(int _healAmount)
+    {
+        playerHealth += _healAmount;
+        heartScript.RenderHeart();
     }
 }

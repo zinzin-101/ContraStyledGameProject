@@ -13,9 +13,16 @@ public class PlayerProjectileSpawner : MonoBehaviour
 
     
     [SerializeField] private float _overheatStackLimit;
+    public float OverheatStackLimit => _overheatStackLimit;
+
     [SerializeField] private float _overheatCooldownTimer;
-    float _overheatStack =0;
+    public float OverheatCooldownTimer => _overheatCooldownTimer;
+    private float _overheatCooldownTimerCount;
+    public float OverheatCooldownTimerCount => _overheatCooldownTimerCount;
+    private float _overheatStack;
+    public float OverheatStack => _overheatStack;
     private bool _isOverHeat;
+    public bool IsOverheat => _isOverHeat;
 
     private bool canSpawn;
 
@@ -27,6 +34,7 @@ public class PlayerProjectileSpawner : MonoBehaviour
     void Start()
     {
         canSpawn = true;
+        _overheatStack = 0f;
         
     }
     
@@ -35,6 +43,20 @@ public class PlayerProjectileSpawner : MonoBehaviour
         if(_overheatStack > 0)
         {
             _overheatStack -= Time.deltaTime;
+        }
+
+        if (_isOverHeat)
+        {
+            _overheatCooldownTimerCount -= Time.deltaTime;
+            if (_overheatCooldownTimerCount <= 0f)
+            {
+                _isOverHeat = false;
+                _overheatStack = 0;
+            }
+        }
+        else
+        {
+            _overheatCooldownTimerCount = _overheatCooldownTimer;
         }
     }
     
@@ -70,9 +92,10 @@ public class PlayerProjectileSpawner : MonoBehaviour
             StartCoroutine(DelayTimer());
             if (_overheatStack >= _overheatStackLimit)
             {
+                _overheatStack = _overheatStackLimit;
                 Debug.Log("Overheating"); //remove later
                 _isOverHeat = true;
-                StartCoroutine(OverHeatCooldown());
+                //StartCoroutine(OverHeatCooldown());
             }
         }
 
@@ -84,12 +107,5 @@ public class PlayerProjectileSpawner : MonoBehaviour
         yield return new WaitForSeconds(spawnDelay);
         canSpawn = true;
         
-    }
-
-    IEnumerator OverHeatCooldown()
-    {
-        yield return new WaitForSeconds(_overheatCooldownTimer);
-        _isOverHeat = false;
-        _overheatStack = 0;
     }
 }
