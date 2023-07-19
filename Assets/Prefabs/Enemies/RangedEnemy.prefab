@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7032263402672347700}
   - component: {fileID: 669206127327685343}
   - component: {fileID: 133184820514046614}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: DamageBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +305,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   groundCheckRadius: 0
-  knockbackMultiplier: 100
+  knockbackMultiplier: 1
 --- !u!114 &6991615965123037378
 MonoBehaviour:
   m_ObjectHideFlags: 0

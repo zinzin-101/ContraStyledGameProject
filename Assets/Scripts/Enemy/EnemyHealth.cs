@@ -37,7 +37,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent<PlayerProjectile>(out PlayerProjectile projectile))
+        if (collision.gameObject.TryGetComponent(out PlayerProjectile projectile))
         {
             health -= projectile.Damage;
             Vector3 _hitDirection = (transform.position - collision.gameObject.transform.position).normalized;

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Wall
+  - IgnoreEnemyCollision
+  - OneWayPlatform
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - Enemy
   - Ground
   - Item
-  - 
+  - Attack
   - 
   - 
   - 

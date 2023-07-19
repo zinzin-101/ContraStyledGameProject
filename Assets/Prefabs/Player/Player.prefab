@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 224249654046582271}
   m_Layer: 3
   m_Name: Hitbox
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -220,8 +220,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackScript: {fileID: 5662787309352286704}
   hitbox: {fileID: 224249654046582271}
+  maxPlayerHealth: 10
   playerHealth: 10
   takeDamageCoolDown: 1
+  heartScript: {fileID: 0}
 --- !u!114 &6742908257435179613
 MonoBehaviour:
   m_ObjectHideFlags: 0

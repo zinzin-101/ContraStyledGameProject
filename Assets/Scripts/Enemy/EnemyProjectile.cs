@@ -18,9 +18,12 @@ public class EnemyProjectile : MonoBehaviour
     private Rigidbody2D rb;
     public Rigidbody2D RB => rb;
 
+    private Collider2D col;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
         TryGetComponent(out enemyDamage);
         damage = enemyDamage.Damage;
     }
@@ -36,6 +39,11 @@ public class EnemyProjectile : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             Destroy(gameObject);
+        }
+
+        if (!collision.gameObject.TryGetComponent(out PlayerHealthScript playerScript))
+        {
+            Physics2D.IgnoreCollision(collision.collider, col);
         }
     }
 }
