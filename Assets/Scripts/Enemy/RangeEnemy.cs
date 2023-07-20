@@ -12,10 +12,25 @@ public class RangeEnemy : MonoBehaviour
 
     [Header("Projectile Parameter")]
     [SerializeField] private Transform firepoint;
+    [SerializeField] private Transform aimDirection;
+    Vector2 aimVector;
+
     [SerializeField] private GameObject bulletS;
     [SerializeField] private float _bulletSpeed;
 
     private float _cdTimer = Mathf.Infinity;
+
+    [SerializeField] bool aimAtPlayer;
+    private Transform playerTransform;
+
+    private void Start()
+    {
+        aimVector = (aimDirection.position - firepoint.position).normalized;
+        if (aimAtPlayer)
+        {
+            playerTransform = GameObject.Find("Player").GetComponent<Transform>();
+        }
+    }
 
     private void Update()
     {
@@ -25,7 +40,22 @@ public class RangeEnemy : MonoBehaviour
         {
             _cdTimer = 0;
             var projectile = Instantiate(bulletS,firepoint.position,firepoint.rotation);
-            projectile.GetComponent<Rigidbody2D>().velocity = firepoint.up * _bulletSpeed;
+
+            if (aimAtPlayer)
+            {
+                /*
+                try
+                {
+                    aimVector = (playerTransform.position - firepoint.position).normalized;
+                }
+                catch
+                {
+                    aimAtPlayer = false;
+                }
+                */
+                aimVector = (playerTransform.position - firepoint.position).normalized;
+            }
+            projectile.GetComponent<Rigidbody2D>().velocity = aimVector * _bulletSpeed;
         }
     }
 }

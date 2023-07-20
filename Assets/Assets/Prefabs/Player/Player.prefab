@@ -255,7 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthScript: {fileID: 2562395726381842466}
   movementScript: {fileID: 5573857486105539512}
-  knockbackVelocity: 100
+  knockbackVelocity: 10
   verticalKnockbackVelocity: 10
   knockbackDuration: 0.1
 --- !u!114 &4335204944101555490

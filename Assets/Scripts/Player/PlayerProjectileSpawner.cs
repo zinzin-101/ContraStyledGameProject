@@ -88,12 +88,12 @@ public class PlayerProjectileSpawner : MonoBehaviour
                     break;
             }
             _overheatStack++;
-            Debug.Log(_overheatStack); //remove later
+            //Debug.Log(_overheatStack); //remove later
             StartCoroutine(DelayTimer());
             if (_overheatStack >= _overheatStackLimit)
             {
                 _overheatStack = _overheatStackLimit;
-                Debug.Log("Overheating"); //remove later
+                //Debug.Log("Overheating"); //remove later
                 _isOverHeat = true;
                 //StartCoroutine(OverHeatCooldown());
             }

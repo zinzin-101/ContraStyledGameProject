@@ -13,6 +13,8 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] bool canDropHealth;
     private float rnd;
 
+    [SerializeField] bool receiveVerticalKnockback;
+
     [SerializeField] EnemyKnockback enemyKnockbackScript;
 
     private void Start()
@@ -40,8 +42,14 @@ public class EnemyHealth : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out PlayerProjectile projectile))
         {
             health -= projectile.Damage;
+
             Vector3 _hitDirection = (transform.position - collision.gameObject.transform.position).normalized;
+            if (!receiveVerticalKnockback)
+            {
+                _hitDirection.y = 0f;
+            }
             StartCoroutine(enemyKnockbackScript.KnockbackForEnemy(_hitDirection));
+            
             Destroy(collision.gameObject);
         }
     }

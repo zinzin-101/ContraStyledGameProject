@@ -35,7 +35,8 @@ public class PlayerHealthScript : MonoBehaviour
         if (playerHealth <= 0)
         {
             playerAlive = false;
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            //Destroy(gameObject);
         }
 
         if (playerHealth > maxPlayerHealth)
