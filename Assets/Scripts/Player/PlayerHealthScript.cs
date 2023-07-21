@@ -8,7 +8,7 @@ public class PlayerHealthScript : MonoBehaviour
 
     [SerializeField] Collider2D hitbox;
     [SerializeField] int maxPlayerHealth = 10;
-    [SerializeField] int playerHealth = 10;
+    private int playerHealth = 10;
     public int PlayerHealth => playerHealth;
     public int MaxPlayerHealth => maxPlayerHealth;
 
@@ -36,6 +36,7 @@ public class PlayerHealthScript : MonoBehaviour
         {
             playerAlive = false;
             gameObject.SetActive(false);
+            Debug.Log("dead");
             //Destroy(gameObject);
         }
 
@@ -82,6 +83,12 @@ public class PlayerHealthScript : MonoBehaviour
     public void Heal(int _healAmount)
     {
         playerHealth += _healAmount;
+        heartScript.RenderHeart();
+    }
+
+    public void TakeDamage(int _damage)
+    {
+        playerHealth -= _damage;
         heartScript.RenderHeart();
     }
 }

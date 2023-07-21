@@ -40,6 +40,11 @@ public class PlayerInput : MonoBehaviour
     {
         movementScript.Move(horizontalInput);
 
+        if (movementScript.OnWall)
+        {
+            movementScript.SetRigidbodyVelocity(new Vector3(movementScript.GetCurrentVelocity().x, -movementScript.GetCurrentGravity(),0f));
+        }
+
         animController.SetFloat("Speed", Mathf.Abs(horizontalInput));
 
         if (jumpInput)

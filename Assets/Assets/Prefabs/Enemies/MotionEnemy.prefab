@@ -364,7 +364,7 @@ MonoBehaviour:
   _healingTank: {fileID: 5761979222050563027, guid: c59792fdde1c2f04a82c6a456c315fb3, type: 3}
   _hpDropRate: 0
   canDropHealth: 0
-  receiveKnockback: 1
+  receiveVerticalKnockback: 0
   enemyKnockbackScript: {fileID: 1774279986168049034}
 --- !u!114 &1774279986168049034
 MonoBehaviour:
@@ -378,7 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c3ef0854322b544d85ab3d782c0c854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackForce: 10000
+  knockbackForce: 100
   knockbackDuration: 0.1
 --- !u!50 &8755266916395143792
 Rigidbody2D:

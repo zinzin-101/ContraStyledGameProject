@@ -12,10 +12,10 @@ public class PlayerProjectileSpawner : MonoBehaviour
     [SerializeField] float spawnDelay = 0.25f;
 
     
-    [SerializeField] private float _overheatStackLimit;
+    [SerializeField] private float _overheatStackLimit = 10f;
     public float OverheatStackLimit => _overheatStackLimit;
 
-    [SerializeField] private float _overheatCooldownTimer;
+    [SerializeField] private float _overheatCooldownTimer = 2f;
     public float OverheatCooldownTimer => _overheatCooldownTimer;
     private float _overheatCooldownTimerCount;
     public float OverheatCooldownTimerCount => _overheatCooldownTimerCount;

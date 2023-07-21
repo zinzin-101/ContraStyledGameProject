@@ -8,6 +8,9 @@ public class MovementScript : MonoBehaviour
 {
     private Rigidbody2D rb;
     private bool grounded;
+    
+    private bool onWall;
+    public bool OnWall => onWall;
 
     [SerializeField] bool facingRight = true;
     public bool FacingRight => facingRight;
@@ -29,6 +32,7 @@ public class MovementScript : MonoBehaviour
     void Start()
     {
         canMove = true;
+        onWall = false;
     }
 
     void Update()
@@ -36,6 +40,22 @@ public class MovementScript : MonoBehaviour
         if (groundCheck != null)
         {
             grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            onWall = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            onWall = false;
         }
     }
 
@@ -47,6 +67,7 @@ public class MovementScript : MonoBehaviour
         }
 
         Vector3 velocity = new Vector2(input, rb.velocity.y);
+
         rb.velocity = velocity;
 
         if ((input > 0 && !facingRight) || (input < 0 && facingRight))
@@ -96,5 +117,10 @@ public class MovementScript : MonoBehaviour
     public Vector3 GetCurrentVelocity()
     {
         return rb.velocity;
+    }
+
+    public float GetCurrentGravity()
+    {
+        return rb.gravityScale;
     }
 }
