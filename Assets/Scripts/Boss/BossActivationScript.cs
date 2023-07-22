@@ -2,13 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableButtonScript : MonoBehaviour
+public class BossActivationScript : MonoBehaviour
 {
     [SerializeField] bool canReinteract = true;
     private bool canInteract;
 
+    [SerializeField] float setDeactiveDelay = 5f;
+    private Animator animator;
+
+    //wait for boss object to finished
+
     private void Awake()
     {
+        TryGetComponent(out animator);
         canInteract = true;
     }
 
@@ -26,13 +32,13 @@ public class InteractableButtonScript : MonoBehaviour
                     playerInteractScript.ActiveText(false);
                 }
 
-                //something
+                Activation();
 
                 Debug.Log("Interacted");
             }
         }
 
-        
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -41,5 +47,17 @@ public class InteractableButtonScript : MonoBehaviour
         {
             playerInteractScript.ActiveText(false);
         }
+    }
+
+    public void Activation()
+    {
+        animator.SetTrigger("Activate");
+        StartCoroutine(SetDeactivate(setDeactiveDelay));
+    }
+
+    IEnumerator SetDeactivate(float time)
+    {
+        yield return new WaitForSeconds(time);
+        gameObject.SetActive(false);
     }
 }
