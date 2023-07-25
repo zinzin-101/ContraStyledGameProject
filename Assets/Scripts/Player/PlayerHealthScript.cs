@@ -30,6 +30,11 @@ public class PlayerHealthScript : MonoBehaviour
         canTakeDamage = true;
     }
 
+    private void Start()
+    {
+        heartScript.RenderHeart();
+    }
+
     private void Update()
     {
         if (playerHealth <= 0)
@@ -37,6 +42,9 @@ public class PlayerHealthScript : MonoBehaviour
             playerAlive = false;
             gameObject.SetActive(false);
             Debug.Log("dead");
+
+            SoundManager.PlayerOneHeart.Stop();
+
             //Destroy(gameObject);
         }
 
@@ -61,8 +69,6 @@ public class PlayerHealthScript : MonoBehaviour
             knockbackScript.TriggerKnockback(_hitDirection);
 
             TakeDamage(enemyDamage.Damage);
-
-            heartScript.RenderHeart();
 
             StartCoroutine(DamageCoolDown(takeDamageCoolDown));
 
@@ -108,10 +114,6 @@ public class PlayerHealthScript : MonoBehaviour
         }
 
         if (playerHealth <= 2)
-        {
-            SoundManager.PlayerOneHeart.Play();
-        }
-        else if (!playerAlive)
         {
             SoundManager.PlayerOneHeart.Play();
         }

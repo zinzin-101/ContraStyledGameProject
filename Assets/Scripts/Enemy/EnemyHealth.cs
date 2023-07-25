@@ -53,8 +53,10 @@ public class EnemyHealth : MonoBehaviour
                 _hitDirection.y = 0f;
             }
             StartCoroutine(enemyKnockbackScript.KnockbackForEnemy(_hitDirection));
-            
-            Destroy(collision.gameObject);
+
+            projectile.PlayDestroyAnimation();
+
+            //Destroy(collision.gameObject);
         }
     }
 }

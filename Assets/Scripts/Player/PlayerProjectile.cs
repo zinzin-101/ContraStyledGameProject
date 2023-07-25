@@ -17,9 +17,12 @@ public class PlayerProjectile : MonoBehaviour
     public Rigidbody2D RB => rb;
     public int Damage => damage;
 
+    private Animator animator;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     private IEnumerator Start()
@@ -32,7 +35,13 @@ public class PlayerProjectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            Destroy(gameObject);
+            PlayDestroyAnimation();
         }
+    }
+
+    public void PlayDestroyAnimation()
+    {
+        animator.SetTrigger("Destroy");
+        Destroy(gameObject, 0.06f);
     }
 }

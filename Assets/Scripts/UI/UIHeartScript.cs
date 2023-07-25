@@ -6,13 +6,8 @@ public class UIHeartScript : MonoBehaviour
 {
     [SerializeField] PlayerHealthScript playerHealthScript;
     [SerializeField] GameObject[] heartArray = new GameObject[10];
-    private int maxHealth, currentHealth;
-    private int index, indexCount;
-
-    private void Awake()
-    {
-        maxHealth = playerHealthScript.MaxPlayerHealth;
-    }
+    private int currentHealth;
+    private int index;
 
     private void Start()
     {
@@ -22,19 +17,22 @@ public class UIHeartScript : MonoBehaviour
     public void RenderHeart()
     {
         currentHealth = playerHealthScript.PlayerHealth;
-        index = currentHealth;
-        indexCount = 0;
+        index = 1;
         foreach (GameObject heart in heartArray)
         {
-            if (indexCount < index)
+            heart.TryGetComponent(out Animator _heartAnimator);
+
+            if (index <= currentHealth)
             {
-                heart.SetActive(true);
+                _heartAnimator.SetTrigger("Reset");
+                //heart.SetActive(true);
             }
             else
             {
-                heart.SetActive(false);
+                _heartAnimator.SetTrigger("Start");
+                //heart.SetActive(false);
             }
-            indexCount++;
+            index++;
         }
     }
 }

@@ -88,6 +88,7 @@ public class PlayerProjectileSpawner : MonoBehaviour
 
             PlayerProjectile projectile = Instantiate(projectilePrefab, spawnPosition.position, Quaternion.identity);
             Vector3 newVelocity = Vector3.right;
+            Vector3 newScale = projectile.transform.localScale;
 
             switch (moveScript.FacingRight)
             {
@@ -97,8 +98,11 @@ public class PlayerProjectileSpawner : MonoBehaviour
 
                 case false:
                     projectile.RB.velocity = -newVelocity * projectile.ProjectileVelocity;
+                    newScale *= -1f;
                     break;
             }
+            projectile.transform.localScale = newScale;
+
             _overheatStack++;
             StartCoroutine(DelayTimer());
 
