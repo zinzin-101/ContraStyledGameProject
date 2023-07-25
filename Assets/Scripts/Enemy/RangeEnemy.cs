@@ -23,6 +23,8 @@ public class RangeEnemy : MonoBehaviour
     [SerializeField] bool aimAtPlayer;
     private Transform playerTransform;
 
+    [SerializeField] AudioClip shootSound;
+
     private void Start()
     {
         aimVector = (aimDirection.position - firepoint.position).normalized;
@@ -43,19 +45,11 @@ public class RangeEnemy : MonoBehaviour
 
             if (aimAtPlayer)
             {
-                /*
-                try
-                {
-                    aimVector = (playerTransform.position - firepoint.position).normalized;
-                }
-                catch
-                {
-                    aimAtPlayer = false;
-                }
-                */
                 aimVector = (playerTransform.position - firepoint.position).normalized;
             }
             projectile.GetComponent<Rigidbody2D>().velocity = aimVector * _bulletSpeed;
+
+            AudioSource.PlayClipAtPoint(shootSound, transform.position);
         }
     }
 }

@@ -17,6 +17,8 @@ public class EnemyHealth : MonoBehaviour
 
     [SerializeField] EnemyKnockback enemyKnockbackScript;
 
+    [SerializeField] AudioClip hitSound;
+
     private void Start()
     {
         rnd = Random.value;
@@ -42,6 +44,8 @@ public class EnemyHealth : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out PlayerProjectile projectile))
         {
             health -= projectile.Damage;
+
+            AudioSource.PlayClipAtPoint(hitSound, transform.position);
 
             Vector3 _hitDirection = (transform.position - collision.gameObject.transform.position).normalized;
             if (!receiveVerticalKnockback)

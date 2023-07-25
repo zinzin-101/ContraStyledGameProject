@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 6742908257435179613}
   - component: {fileID: 5662787309352286704}
   - component: {fileID: 4335204944101555490}
+  - component: {fileID: 6508132008830274442}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -221,7 +222,6 @@ MonoBehaviour:
   knockbackScript: {fileID: 5662787309352286704}
   hitbox: {fileID: 224249654046582271}
   maxPlayerHealth: 10
-  playerHealth: 10
   takeDamageCoolDown: 1
   heartScript: {fileID: 0}
 --- !u!114 &6742908257435179613
@@ -271,6 +271,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5710197651277079607}
+--- !u!114 &6508132008830274442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2381019299415532473}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32c412bd93f320c4481f40baaa5462be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5409117302001420628
 GameObject:
   m_ObjectHideFlags: 0

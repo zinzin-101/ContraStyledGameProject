@@ -346,8 +346,9 @@ MonoBehaviour:
   _healingTank: {fileID: 5761979222050563027, guid: c59792fdde1c2f04a82c6a456c315fb3, type: 3}
   _hpDropRate: 0
   canDropHealth: 0
-  receiveVerticalKnockback: 0
+  receiveVerticalKnockback: 1
   enemyKnockbackScript: {fileID: 6162675416532748119}
+  hitSound: {fileID: 8300000, guid: 734e6ce5a3dd79443a728de631d5dcd9, type: 3}
 --- !u!114 &6162675416532748119
 MonoBehaviour:
   m_ObjectHideFlags: 0

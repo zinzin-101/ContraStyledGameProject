@@ -366,6 +366,7 @@ MonoBehaviour:
   canDropHealth: 0
   receiveVerticalKnockback: 0
   enemyKnockbackScript: {fileID: 1774279986168049034}
+  hitSound: {fileID: 8300000, guid: b5ebb3a287e04de44854dcd54f1cf5f7, type: 3}
 --- !u!114 &1774279986168049034
 MonoBehaviour:
   m_ObjectHideFlags: 0

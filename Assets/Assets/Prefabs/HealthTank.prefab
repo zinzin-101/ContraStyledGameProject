@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healingTankCollider: {fileID: 300625915285473421}
-  _healAmount: 1
+  _healAmount: 2
 --- !u!95 &2728013226925420188
 Animator:
   serializedVersion: 5

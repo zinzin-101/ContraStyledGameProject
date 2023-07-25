@@ -26,6 +26,9 @@ public class PlayerProjectileSpawner : MonoBehaviour
 
     private bool canSpawn;
 
+    //sound
+    private bool canPlayOverheat;
+
     private void Awake()
     {
         TryGetComponent(out moveScript);
@@ -52,11 +55,20 @@ public class PlayerProjectileSpawner : MonoBehaviour
             {
                 _isOverHeat = false;
                 _overheatStack = 0;
+
+                SoundManager.PlayerOverheating.Stop();
+                SoundManager.PlayerOverheatFinished.Play();
             }
         }
         else
         {
             _overheatCooldownTimerCount = _overheatCooldownTimer;
+        }
+
+        if (canPlayOverheat)
+        {
+            canPlayOverheat = false;
+            SoundManager.PlayerOverheating.Play();
         }
     }
     
@@ -88,15 +100,19 @@ public class PlayerProjectileSpawner : MonoBehaviour
                     break;
             }
             _overheatStack++;
-            //Debug.Log(_overheatStack); //remove later
             StartCoroutine(DelayTimer());
+
             if (_overheatStack >= _overheatStackLimit)
             {
                 _overheatStack = _overheatStackLimit;
-                //Debug.Log("Overheating"); //remove later
                 _isOverHeat = true;
-                //StartCoroutine(OverHeatCooldown());
+
+                //overheat sfx
+                SoundManager.PlayerOverheatStart.Play();
+                canPlayOverheat = true;
             }
+
+            SoundManager.PlayerShoot.Play();
         }
 
         

@@ -382,6 +382,7 @@ MonoBehaviour:
   bulletS: {fileID: 9036119814809654161, guid: 16f06f89230cb3f4998c14bced9212f5, type: 3}
   _bulletSpeed: 10
   aimAtPlayer: 0
+  shootSound: {fileID: 8300000, guid: 5c101f56f86e0f64ead9d2fc58d3ab34, type: 3}
 --- !u!114 &3572318056977825687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,6 +402,7 @@ MonoBehaviour:
   canDropHealth: 0
   receiveVerticalKnockback: 0
   enemyKnockbackScript: {fileID: 6162675416532748119}
+  hitSound: {fileID: 8300000, guid: 6bc9660a1a4686b4387230e1b7656f93, type: 3}
 --- !u!114 &6162675416532748119
 MonoBehaviour:
   m_ObjectHideFlags: 0

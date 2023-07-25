@@ -60,7 +60,7 @@ public class PlayerHealthScript : MonoBehaviour
             Vector3 _hitDirection = (transform.position - collision.gameObject.transform.position).normalized;
             knockbackScript.TriggerKnockback(_hitDirection);
 
-            playerHealth -= enemyDamage.Damage; 
+            TakeDamage(enemyDamage.Damage);
 
             heartScript.RenderHeart();
 
@@ -83,12 +83,39 @@ public class PlayerHealthScript : MonoBehaviour
     public void Heal(int _healAmount)
     {
         playerHealth += _healAmount;
+
+        SoundManager.PlaySound(SoundManager.PlayerGetHP, false);
+
+        if (playerHealth > 2)
+        {
+            SoundManager.PlayerOneHeart.Stop();
+        }
+
         heartScript.RenderHeart();
     }
 
     public void TakeDamage(int _damage)
     {
         playerHealth -= _damage;
+
+        if (playerHealth % 2 == 0)
+        {
+            SoundManager.PlaySound(SoundManager.PlayerLoseHP2, false);
+        }
+        else
+        {
+            SoundManager.PlaySound(SoundManager.PlayerLoseHP1, false);
+        }
+
+        if (playerHealth <= 2)
+        {
+            SoundManager.PlayerOneHeart.Play();
+        }
+        else if (!playerAlive)
+        {
+            SoundManager.PlayerOneHeart.Play();
+        }
+
         heartScript.RenderHeart();
     }
 }
