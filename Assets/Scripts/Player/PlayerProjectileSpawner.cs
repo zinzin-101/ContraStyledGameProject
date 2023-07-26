@@ -20,6 +20,7 @@ public class PlayerProjectileSpawner : MonoBehaviour
     private float _overheatCooldownTimerCount;
     public float OverheatCooldownTimerCount => _overheatCooldownTimerCount;
     private float _overheatStack;
+    [SerializeField] float unstackSpeed = 1f;
     public float OverheatStack => _overheatStack;
     private bool _isOverHeat;
     public bool IsOverheat => _isOverHeat;
@@ -45,7 +46,7 @@ public class PlayerProjectileSpawner : MonoBehaviour
     {
         if(_overheatStack > 0)
         {
-            _overheatStack -= Time.deltaTime;
+            _overheatStack -= Time.deltaTime * unstackSpeed;
         }
 
         if (_isOverHeat)

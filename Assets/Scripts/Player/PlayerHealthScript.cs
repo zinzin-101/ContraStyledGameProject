@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.MPE;
 using UnityEngine;
 
 public class PlayerHealthScript : MonoBehaviour
@@ -11,6 +12,7 @@ public class PlayerHealthScript : MonoBehaviour
     private int playerHealth = 10;
     public int PlayerHealth => playerHealth;
     public int MaxPlayerHealth => maxPlayerHealth;
+    private int previousHealth;
 
     private bool playerAlive;
     public bool PlayerAlive => playerAlive;
@@ -28,6 +30,8 @@ public class PlayerHealthScript : MonoBehaviour
         playerHealth = maxPlayerHealth;
         playerAlive = true;
         canTakeDamage = true;
+
+        previousHealth = playerHealth;
     }
 
     private void Start()
@@ -37,6 +41,12 @@ public class PlayerHealthScript : MonoBehaviour
 
     private void Update()
     {
+        if (previousHealth !=  playerHealth)
+        {
+            previousHealth = playerHealth;
+            heartScript.RenderHeart();
+        }
+
         if (playerHealth <= 0)
         {
             playerAlive = false;
@@ -97,7 +107,7 @@ public class PlayerHealthScript : MonoBehaviour
             SoundManager.PlayerOneHeart.Stop();
         }
 
-        heartScript.RenderHeart();
+        //heartScript.RenderHeart();
     }
 
     public void TakeDamage(int _damage)
@@ -118,6 +128,6 @@ public class PlayerHealthScript : MonoBehaviour
             SoundManager.PlayerOneHeart.Play();
         }
 
-        heartScript.RenderHeart();
+        //heartScript.RenderHeart();
     }
 }

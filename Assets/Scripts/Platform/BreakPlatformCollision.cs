@@ -13,7 +13,7 @@ public class BreakPlatformCollision : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out Rigidbody2D rb))
+        if (collision.gameObject.TryGetComponent(out Rigidbody2D rb) && collision.gameObject.TryGetComponent(out PlayerInput playerInput))
         {
             if (!mainScript.StartBreak && rb.velocity.y <= 0f)
             {

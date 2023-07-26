@@ -16,6 +16,8 @@ public class BreakablePlatform : MonoBehaviour
 
     private Animator animator;
 
+    [SerializeField] float respawnDelay = 5f;
+
     private void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -46,6 +48,7 @@ public class BreakablePlatform : MonoBehaviour
                 startBreak = false;
                 _color.a = 1f;
                 spriteRenderer.color = _color;
+                StartCoroutine(RespawnPlatform());
                 platform.SetActive(false);
             }
         }
@@ -65,5 +68,11 @@ public class BreakablePlatform : MonoBehaviour
     {
         startBreak = value;
         animator.SetTrigger("StartBreak");
+    }
+
+    IEnumerator RespawnPlatform()
+    {
+        yield return new WaitForSeconds(respawnDelay);
+        SetPlatformOn(true);
     }
 }
