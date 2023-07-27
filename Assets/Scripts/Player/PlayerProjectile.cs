@@ -33,7 +33,7 @@ public class PlayerProjectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Ground"))
         {
             PlayDestroyAnimation();
         }
@@ -42,6 +42,7 @@ public class PlayerProjectile : MonoBehaviour
     public void PlayDestroyAnimation()
     {
         animator.SetTrigger("Destroy");
+        rb.velocity = Vector3.zero;
         Destroy(gameObject, 0.06f);
     }
 }

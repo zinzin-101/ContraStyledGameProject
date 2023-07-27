@@ -7,6 +7,9 @@ public class BreakablePlatform : MonoBehaviour
     [SerializeField] float destroyDelay = 2f;
     private float timer;
     private bool startBreak;
+
+    [SerializeField] bool canRespawn;
+
     public bool StartBreak => startBreak;
 
     [SerializeField] GameObject platform;
@@ -48,7 +51,10 @@ public class BreakablePlatform : MonoBehaviour
                 startBreak = false;
                 _color.a = 1f;
                 spriteRenderer.color = _color;
-                StartCoroutine(RespawnPlatform());
+                if (canRespawn)
+                {
+                    StartCoroutine(RespawnPlatform());
+                }
                 platform.SetActive(false);
             }
         }

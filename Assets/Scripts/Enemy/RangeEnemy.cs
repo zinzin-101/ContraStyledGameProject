@@ -47,7 +47,9 @@ public class RangeEnemy : MonoBehaviour
             {
                 aimVector = (playerTransform.position - firepoint.position).normalized;
             }
+
             projectile.GetComponent<Rigidbody2D>().velocity = aimVector * _bulletSpeed;
+            projectile.transform.right = aimVector;
 
             AudioSource.PlayClipAtPoint(shootSound, transform.position);
         }

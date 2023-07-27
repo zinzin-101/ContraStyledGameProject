@@ -84,7 +84,7 @@ public class PlayerHealthScript : MonoBehaviour
 
             if (collision.gameObject.TryGetComponent(out EnemyProjectile projectile))
             {
-                Destroy(collision.gameObject);
+                projectile.PlayDestroyAnimation();
             }
         }
         

@@ -20,10 +20,14 @@ public class EnemyProjectile : MonoBehaviour
 
     private Collider2D col;
 
+    private Animator animator;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
+        animator = GetComponent<Animator>();
+
         TryGetComponent(out enemyDamage);
         damage = enemyDamage.Damage;
     }
@@ -36,14 +40,21 @@ public class EnemyProjectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Ground"))
         {
-            Destroy(gameObject);
+            PlayDestroyAnimation();
         }
 
         if (!collision.gameObject.TryGetComponent(out PlayerHealthScript playerScript))
         {
             Physics2D.IgnoreCollision(collision.collider, col);
         }
+    }
+
+    public void PlayDestroyAnimation()
+    {
+        animator.SetTrigger("Destroy");
+        rb.velocity = Vector3.zero;
+        Destroy(gameObject, 0.06f);
     }
 }
