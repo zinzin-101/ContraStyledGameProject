@@ -9,6 +9,18 @@ public class UIHeartScript : MonoBehaviour
     private int currentHealth;
     private int index;
 
+    public bool IsPlayerAlive;
+
+    private void Awake()
+    {
+        IsPlayerAlive = true;
+    }
+
+    private void Update()
+    {
+        IsPlayerAlive = playerHealthScript.PlayerAlive;
+    }
+
     public void RenderHeart()
     {
         currentHealth = playerHealthScript.PlayerHealth;
