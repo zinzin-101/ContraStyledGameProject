@@ -24,9 +24,16 @@ public class PlayerHealthScript : MonoBehaviour
 
     [SerializeField] UIHeartScript heartScript;
 
+    private SpriteRenderer spriteRenderer;
+
+    [SerializeField] float hitStopTime = 0f;
+    [SerializeField] float hitStopDelay = 0.5f;
+
     private void Awake()
     {
         TryGetComponent(out KnockbackScript knockbackScript);
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
         playerHealth = maxPlayerHealth;
         playerAlive = true;
         canTakeDamage = true;
@@ -128,6 +135,23 @@ public class PlayerHealthScript : MonoBehaviour
             SoundManager.PlayerOneHeart.Play();
         }
 
+        if (playerHealth > 0)
+        {
+            StartCoroutine(HitStop(hitStopTime, 1f, hitStopDelay));
+        }
         //heartScript.RenderHeart();
+    }
+
+    IEnumerator HitStop(float timeScaleEffect, float timeScaleRestore, float delay)
+    {
+        Color _defaultColor = spriteRenderer.color;
+
+        Time.timeScale = timeScaleEffect;
+        spriteRenderer.color = Color.red;
+
+        yield return new WaitForSecondsRealtime(delay);
+
+        Time.timeScale = timeScaleRestore;
+        spriteRenderer.color = _defaultColor;
     }
 }

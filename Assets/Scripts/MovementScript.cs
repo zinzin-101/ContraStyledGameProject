@@ -24,6 +24,9 @@ public class MovementScript : MonoBehaviour
 
     private bool canMove;
 
+    [SerializeField] float coyoteTime = 0.1f;
+    private float coyoteTimeCounter;
+
     void Awake()
     {
         TryGetComponent(out rb);
@@ -33,6 +36,8 @@ public class MovementScript : MonoBehaviour
     {
         canMove = true;
         onWall = false;
+
+        coyoteTimeCounter = coyoteTime;
     }
 
     void Update()
@@ -40,6 +45,20 @@ public class MovementScript : MonoBehaviour
         if (groundCheck != null)
         {
             grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        }
+
+        if (grounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }    
+        else
+        {
+            if (coyoteTimeCounter < 0f)
+            {
+                coyoteTimeCounter = 0f;
+            }
+
+            coyoteTimeCounter -= Time.deltaTime;
         }
     }
 
@@ -78,10 +97,12 @@ public class MovementScript : MonoBehaviour
 
     public void Jump(float power)
     {
-        if (!grounded || !canMove)
+        if (coyoteTimeCounter <= 0f || !canMove)
         {
             return;
         }
+        coyoteTimeCounter = 0f;
+
         Vector2 _newVelocity = rb.velocity;
         _newVelocity.y = power;
         rb.velocity = _newVelocity;

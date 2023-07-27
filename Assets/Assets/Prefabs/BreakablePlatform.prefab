@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1237253137260049367}
   m_Layer: 8
   m_Name: Platform
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -231,6 +231,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyDelay: 0.6
-  canRespawn: 1
+  canRespawn: 0
   platform: {fileID: 5290520944857600258}
   respawnDelay: 5
