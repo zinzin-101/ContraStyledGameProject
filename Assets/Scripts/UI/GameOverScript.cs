@@ -9,7 +9,7 @@ public class GameOverScript : MonoBehaviour
     private UIHeartScript heartScript;
     private PlayerHealthScript playerHealthScript;
 
-    private bool canTrigger;
+    private bool panelActive;
 
     private void Awake()
     {
@@ -20,15 +20,24 @@ public class GameOverScript : MonoBehaviour
     {
         gameOverPanel.SetActive(false);
         GameManager.Instance.PlayerObject.TryGetComponent(out playerHealthScript);
-        canTrigger = true;
+        panelActive = false;
     }
 
     private void Update()
     {
-        if (!heartScript.IsPlayerAlive && canTrigger)
+        panelActive = gameOverPanel.activeSelf;
+
+        if (!heartScript.IsPlayerAlive && !panelActive)
         {
-            canTrigger = false;
             gameOverPanel.SetActive(true);
+
+            SoundManager.InGame.Stop();
+            SoundManager.DeathScene.Play();
+        }
+
+        if (heartScript.IsPlayerAlive && panelActive)
+        {
+            gameOverPanel.SetActive(false);
         }
     }
 
@@ -36,14 +45,14 @@ public class GameOverScript : MonoBehaviour
     {
         GameManager.Instance.PlayerObject.SetActive(true);
         playerHealthScript.RespawnPlayer(GameManager.CurrentCheckpointPos);
-        gameOverPanel.SetActive(false);
-
-        canTrigger = true;
 
         Vector3 _newCameraPosition = GameManager.Instance.CameraObject.transform.position;
         _newCameraPosition.x = GameManager.Instance.PlayerObject.transform.position.x;
         _newCameraPosition.y = GameManager.Instance.PlayerObject.transform.position.y;
         GameManager.Instance.CameraObject.transform.position = _newCameraPosition;
+
+        SoundManager.DeathScene.Stop();
+        SoundManager.InGame.Play();
     }
 
     public void RestartButton()
