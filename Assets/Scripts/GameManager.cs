@@ -9,6 +9,14 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
     public static GameManager Instance => instance;
 
+    [SerializeField] GameObject playerObject;
+    public GameObject PlayerObject => playerObject;
+
+    [SerializeField] GameObject cameraObject;
+    public GameObject CameraObject => cameraObject;
+
+    public static Vector3 CurrentCheckpointPos;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -18,6 +26,11 @@ public class GameManager : MonoBehaviour
         else
         {
             instance = this;
+        }
+
+        if (playerObject == null)
+        {
+            playerObject = GameObject.Find("Player");
         }
     }
 

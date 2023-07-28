@@ -57,7 +57,6 @@ public class PlayerHealthScript : MonoBehaviour
         {
             playerAlive = false;
             gameObject.SetActive(false);
-            Debug.Log("dead");
 
             SoundManager.PlayerOneHeart.Stop();
 
@@ -139,6 +138,14 @@ public class PlayerHealthScript : MonoBehaviour
             StartCoroutine(HitStop(hitStopTime, 1f, hitStopDelay));
         }
         //heartScript.RenderHeart();
+    }
+
+    public void RespawnPlayer(Vector3 respawnPosition)
+    {
+        transform.position = respawnPosition;
+        playerHealth = maxPlayerHealth;
+        canTakeDamage = true;
+        playerAlive = true;
     }
 
     IEnumerator HitStop(float timeScaleEffect, float timeScaleRestore, float delay)
