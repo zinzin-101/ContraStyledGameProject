@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f600b6f52acde64a9d67c8eca9365cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 3
+  duration: 2
   projectileVelocity: 10
 --- !u!95 &4186818731683696649
 Animator:

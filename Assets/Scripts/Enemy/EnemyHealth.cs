@@ -9,7 +9,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] Collider2D hitbox;
 
     [SerializeField] HealingTank _healingTank;
-    [SerializeField] float _hpDropRate;
+    [SerializeField] float _hpDropRate = 0.1f;
     [SerializeField] bool canDropHealth;
     private float rnd;
 
@@ -29,7 +29,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (health <= 0)
         {
-            if (rnd <= 0.1f && canDropHealth)
+            if (rnd <= _hpDropRate && canDropHealth)
             {
                 _healingTank = Instantiate(_healingTank, transform.position, Quaternion.identity);
 

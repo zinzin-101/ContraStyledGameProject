@@ -23,15 +23,13 @@ public class RangeEnemy : MonoBehaviour
     [SerializeField] bool aimAtPlayer;
     private Transform playerTransform;
 
+    [SerializeField] float distanceToStartSound = 10f;
     [SerializeField] AudioClip shootSound;
 
     private void Start()
     {
         aimVector = (aimDirection.position - firepoint.position).normalized;
-        if (aimAtPlayer)
-        {
-            playerTransform = GameObject.Find("Player").GetComponent<Transform>();
-        }
+        playerTransform = GameObject.Find("Player").GetComponent<Transform>();
     }
 
     private void Update()
@@ -51,7 +49,10 @@ public class RangeEnemy : MonoBehaviour
             projectile.GetComponent<Rigidbody2D>().velocity = aimVector * _bulletSpeed;
             projectile.transform.right = aimVector;
 
-            AudioSource.PlayClipAtPoint(shootSound, transform.position);
+            if (Vector2.Distance(transform.position, playerTransform.position) <= distanceToStartSound)
+            {
+                AudioSource.PlayClipAtPoint(shootSound, transform.position);
+            }
         }
     }
 }

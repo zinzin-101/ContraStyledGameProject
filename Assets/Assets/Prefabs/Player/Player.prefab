@@ -192,7 +192,7 @@ MonoBehaviour:
     m_Bits: 256
   groundCheckRadius: 0.25
   knockbackMultiplier: 1
-  coyoteTime: 0.1
+  coyoteTime: 0.2
 --- !u!114 &4143434098533374194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,8 +223,10 @@ MonoBehaviour:
   knockbackScript: {fileID: 5662787309352286704}
   hitbox: {fileID: 224249654046582271}
   maxPlayerHealth: 10
-  takeDamageCoolDown: 0.5
+  takeDamageCoolDown: 0.4
   heartScript: {fileID: 0}
+  hitStopTime: 0.15
+  hitStopDelay: 0.2
 --- !u!114 &6742908257435179613
 MonoBehaviour:
   m_ObjectHideFlags: 0
