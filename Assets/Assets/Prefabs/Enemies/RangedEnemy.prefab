@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3939393449437210914}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8651913310362282549}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &669206127327685343
 BoxCollider2D:
@@ -114,13 +114,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4470241750058004345}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.16, y: 0.148, z: -0.019605532}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8651913310362282549}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5132930810219577672
 GameObject:
@@ -147,13 +147,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5132930810219577672}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8651913310362282549}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6771698661801654553
 SpriteRenderer:
@@ -258,6 +258,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5760717832685793898}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.8438, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -269,7 +270,6 @@ Transform:
   - {fileID: 7595616189654152813}
   - {fileID: 7032263402672347700}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &6991615965123037381
 Rigidbody2D:
@@ -362,6 +362,7 @@ MonoBehaviour:
     m_Bits: 256
   groundCheckRadius: 0
   knockbackMultiplier: 1
+  coyoteTime: 0.1
 --- !u!114 &6991615965123037378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,6 +383,7 @@ MonoBehaviour:
   bulletS: {fileID: 9036119814809654161, guid: 16f06f89230cb3f4998c14bced9212f5, type: 3}
   _bulletSpeed: 10
   aimAtPlayer: 0
+  distanceToStartSound: 10
   shootSound: {fileID: 8300000, guid: 5c101f56f86e0f64ead9d2fc58d3ab34, type: 3}
 --- !u!114 &3572318056977825687
 MonoBehaviour:
@@ -403,6 +405,8 @@ MonoBehaviour:
   receiveVerticalKnockback: 0
   enemyKnockbackScript: {fileID: 6162675416532748119}
   hitSound: {fileID: 8300000, guid: 6bc9660a1a4686b4387230e1b7656f93, type: 3}
+  deathSound: {fileID: 8300000, guid: 9669e9640ada79a42bc3f42ddd7dc375, type: 3}
+  deathParticle: {fileID: 4439000862316776366, guid: 222b80384e94e6742a439347ab221611, type: 3}
 --- !u!114 &6162675416532748119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,6 +421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackForce: 100
   knockbackDuration: 0.2
+  spriteRenderer: {fileID: 0}
 --- !u!114 &3643059566213735277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,13 +458,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6487495662633275316}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.003, y: 0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8651913310362282549}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8188248230112987160
 GameObject:
@@ -485,13 +490,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8188248230112987160}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8651913310362282549}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &562549548906287356
 BoxCollider2D:

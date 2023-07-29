@@ -141,11 +141,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8277070624390001493}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4be02462e8ca45744a1176ef41a6a057, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b09f00ca1335c7488443ba0f8c000f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canReinteract: 0
+  canReinteract: 1
   setDeactiveDelay: 5
+  bossSpawnPoint: {fileID: 0}
+  bossPrefab: {fileID: 0}
 --- !u!95 &3940823862480101568
 Animator:
   serializedVersion: 5

@@ -21,6 +21,8 @@ public class BreakablePlatform : MonoBehaviour
 
     [SerializeField] float respawnDelay = 5f;
 
+    [SerializeField] AudioClip breakSound;
+
     private void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -73,6 +75,10 @@ public class BreakablePlatform : MonoBehaviour
     public void SetStartBreak(bool value)
     {
         startBreak = value;
+        if (breakSound != null)
+        {
+            AudioSource.PlayClipAtPoint(breakSound, transform.position);
+        }
         animator.SetTrigger("StartBreak");
     }
 

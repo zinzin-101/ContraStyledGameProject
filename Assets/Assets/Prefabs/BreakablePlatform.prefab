@@ -234,3 +234,4 @@ MonoBehaviour:
   canRespawn: 0
   platform: {fileID: 5290520944857600258}
   respawnDelay: 5
+  breakSound: {fileID: 8300000, guid: 76dbcffd73afd9e41aaea84ca496dbd7, type: 3}

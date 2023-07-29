@@ -8,6 +8,7 @@ public class MovementScript : MonoBehaviour
 {
     private Rigidbody2D rb;
     private bool grounded;
+    public bool Grounded => grounded;
     
     private bool onWall;
     public bool OnWall => onWall;

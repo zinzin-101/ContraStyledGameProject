@@ -130,6 +130,7 @@ MonoBehaviour:
   duration: 1.25
   projectileVelocity: 25
   damage: 1
+  particleEffect: {fileID: 4439000862316776366, guid: cba2632709060cf41a949437ebb7ab2a, type: 3}
 --- !u!95 &2102884501479358788
 Animator:
   serializedVersion: 5

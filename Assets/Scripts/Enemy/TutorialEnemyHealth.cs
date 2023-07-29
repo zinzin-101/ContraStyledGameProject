@@ -17,9 +17,9 @@ public class TutorialEnemyHealth : MonoBehaviour
 
     [SerializeField] EnemyKnockback enemyKnockbackScript;
 
-    [SerializeField] AudioClip hitSound;
+    [SerializeField] AudioClip hitSound, deathSound;
 
-    [SerializeField] float loadLevelDelay = 1f;
+    [SerializeField] GameObject deathParticle;
 
     private void Start()
     {
@@ -37,7 +37,17 @@ public class TutorialEnemyHealth : MonoBehaviour
 
             }
 
-            LevelManager.Instance.DelayLoadScene("FinalizedMap", loadLevelDelay);
+            if (deathParticle != null)
+            {
+                Instantiate(deathParticle, transform.position, Quaternion.identity);
+            }
+
+            if (deathSound != null)
+            {
+                AudioSource.PlayClipAtPoint(deathSound, transform.position);
+            }
+
+            LevelManager.Instance.FadeToBlackLoadScene("CutsceneStart");
             gameObject.SetActive(false);
         }
     }

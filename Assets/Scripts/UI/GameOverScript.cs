@@ -31,7 +31,7 @@ public class GameOverScript : MonoBehaviour
         {
             gameOverPanel.SetActive(true);
 
-            SoundManager.InGame.Stop();
+            GameManager.Instance.StopSceneBGM();
             SoundManager.DeathScene.Play();
         }
 
@@ -52,7 +52,7 @@ public class GameOverScript : MonoBehaviour
         GameManager.Instance.CameraObject.transform.position = _newCameraPosition;
 
         SoundManager.DeathScene.Stop();
-        SoundManager.InGame.Play();
+        GameManager.Instance.BGMManager();
     }
 
     public void RestartButton()

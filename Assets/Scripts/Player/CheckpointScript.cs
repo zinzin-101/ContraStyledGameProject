@@ -20,11 +20,13 @@ public class CheckpointScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out PlayerHealthScript playerHealthScript))
+        if (collision.gameObject.TryGetComponent(out PlayerHealthScript playerHealthScript) && GameManager.CurrentCheckpointPos != spawnTransform.position)
         {
             GameManager.CurrentCheckpointPos = spawnTransform.position;
             animator.SetTrigger("Start");
             animator.SetBool("Active", true);
+
+            SoundManager.PlaySound(SoundManager.PlayerGetHP, false);
         }
     }
 

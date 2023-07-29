@@ -22,6 +22,8 @@ public class EnemyProjectile : MonoBehaviour
 
     private Animator animator;
 
+    [SerializeField] GameObject particleEffect;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -53,6 +55,11 @@ public class EnemyProjectile : MonoBehaviour
 
     public void PlayDestroyAnimation()
     {
+        if (particleEffect != null)
+        {
+            Instantiate(particleEffect, transform.position, Quaternion.identity);
+        }
+
         animator.SetTrigger("Destroy");
         rb.velocity = Vector3.zero;
         Destroy(gameObject, 0.06f);

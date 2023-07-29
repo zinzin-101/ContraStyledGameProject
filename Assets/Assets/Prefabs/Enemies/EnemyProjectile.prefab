@@ -178,6 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duration: 2
   projectileVelocity: 10
+  particleEffect: {fileID: 4439000862316776366, guid: 0c034321fe6c6a94eb58e0b263b70003, type: 3}
 --- !u!95 &4186818731683696649
 Animator:
   serializedVersion: 5

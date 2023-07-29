@@ -17,7 +17,9 @@ public class EnemyHealth : MonoBehaviour
 
     [SerializeField] EnemyKnockback enemyKnockbackScript;
 
-    [SerializeField] AudioClip hitSound;
+    [SerializeField] AudioClip hitSound, deathSound;
+
+    [SerializeField] GameObject deathParticle;
 
     private void Start()
     {
@@ -33,6 +35,16 @@ public class EnemyHealth : MonoBehaviour
             {
                 _healingTank = Instantiate(_healingTank, transform.position, Quaternion.identity);
 
+            }
+
+            if (deathParticle != null)
+            {
+                Instantiate(deathParticle, transform.position, Quaternion.identity);
+            }
+
+            if (deathSound != null)
+            {
+                AudioSource.PlayClipAtPoint(deathSound, transform.position);
             }
 
             Destroy(gameObject);

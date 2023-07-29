@@ -186,6 +186,8 @@ MonoBehaviour:
   receiveVerticalKnockback: 0
   enemyKnockbackScript: {fileID: 9032604344406041740}
   hitSound: {fileID: 8300000, guid: b5ebb3a287e04de44854dcd54f1cf5f7, type: 3}
+  deathSound: {fileID: 8300000, guid: 9669e9640ada79a42bc3f42ddd7dc375, type: 3}
+  deathParticle: {fileID: 4439000862316776366, guid: 222b80384e94e6742a439347ab221611, type: 3}
 --- !u!114 &9032604344406041740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,6 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackForce: 100
   knockbackDuration: 0.1
+  spriteRenderer: {fileID: 0}
 --- !u!50 &9215696352825274520
 Rigidbody2D:
   serializedVersion: 4
@@ -292,7 +295,9 @@ MonoBehaviour:
   receiveVerticalKnockback: 0
   enemyKnockbackScript: {fileID: 9032604344406041740}
   hitSound: {fileID: 8300000, guid: b5ebb3a287e04de44854dcd54f1cf5f7, type: 3}
+  deathSound: {fileID: 8300000, guid: 9669e9640ada79a42bc3f42ddd7dc375, type: 3}
   loadLevelDelay: 1
+  deathParticle: {fileID: 4439000862316776366, guid: 222b80384e94e6742a439347ab221611, type: 3}
 --- !u!1 &3817990370093273252
 GameObject:
   m_ObjectHideFlags: 0

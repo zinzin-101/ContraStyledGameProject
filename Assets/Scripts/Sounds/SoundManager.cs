@@ -26,6 +26,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource playerOverheatStart;
     [SerializeField] AudioSource playerShoot;
     [SerializeField] AudioSource playerOneHeart;
+    [SerializeField] AudioSource playerWalk;
 
     public static AudioSource PlayerGetHP;
     public static AudioSource PlayerLoseHP1;
@@ -35,6 +36,7 @@ public class SoundManager : MonoBehaviour
     public static AudioSource PlayerOverheatStart;
     public static AudioSource PlayerShoot;
     public static AudioSource PlayerOneHeart;
+    public static AudioSource PlayerWalk;
 
     private void Awake()
     {
@@ -54,6 +56,7 @@ public class SoundManager : MonoBehaviour
         PlayerOverheatStart = playerOverheatStart;
         PlayerShoot = playerShoot;
         PlayerOneHeart = playerOneHeart;
+        PlayerWalk = playerWalk;
     }
 
     public static void PlaySound(AudioSource audio, bool doLoop)

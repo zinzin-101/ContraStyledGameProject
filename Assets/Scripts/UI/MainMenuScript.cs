@@ -26,5 +26,10 @@ public class MainMenuScript : MonoBehaviour
             mainMenu.SetActive(false);
             LevelManager.Instance.LoadScene("Tutorial");
         }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 }

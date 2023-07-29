@@ -14,16 +14,31 @@ public class PlayerInput : MonoBehaviour
 
     [SerializeField] AnimController animController;
 
+    [SerializeField] GameObject walkParticleObject;
+    private ParticleSystem walkParticle;
+    private Transform walkParticleTransform;
+
     void Start()
     {
         TryGetComponent(out movementScript);
         TryGetComponent(out  projectileSpawner);
         TryGetComponent(out  animController);
+
+        if (walkParticleObject != null)
+        {
+            walkParticleObject.TryGetComponent(out walkParticle);
+            walkParticleObject.TryGetComponent(out walkParticleTransform);
+        }
+
+        SoundManager.PlayerWalk.Play();
+        walkParticle.Stop();
     }
 
     void Update()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal") * moveSpeed;
+
+        EffectsHandler();
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -51,6 +66,43 @@ public class PlayerInput : MonoBehaviour
         {
             jumpInput = false;
             movementScript.Jump(jumpForce);
+        }
+    }
+
+    void EffectsHandler()
+    {
+        if (horizontalInput == 0f || !movementScript.Grounded)
+        {
+            SoundManager.PlayerWalk.Pause();
+
+            if (walkParticleObject != null)
+            {
+                if (walkParticle.isPlaying)
+                {
+                    walkParticle.Stop();
+                }
+            }
+        }
+        else if (Mathf.Abs(horizontalInput) > 0 && movementScript.Grounded)
+        {
+            if (horizontalInput > 0f)
+            {
+                walkParticleTransform.rotation = Quaternion.Euler(0, 0, 135);
+            }
+            else if (horizontalInput < 0f)
+            {
+                walkParticleTransform.rotation = Quaternion.Euler(0, 180, 135);
+            }
+
+            SoundManager.PlayerWalk.UnPause();
+
+            if (walkParticleObject != null)
+            {
+                if (!walkParticle.isPlaying)
+                {
+                    walkParticle.Play();
+                }
+            }
         }
     }
 }

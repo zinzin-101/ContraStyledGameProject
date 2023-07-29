@@ -94,7 +94,43 @@ public class PlayerHealthScript : MonoBehaviour
                 projectile.PlayDestroyAnimation();
             }
         }
-        
+
+        if (collision.gameObject.TryGetComponent(out BossCollideDamage collideDamage))
+        {
+            if (!canTakeDamage)
+            {
+                return;
+            }
+            canTakeDamage = false;
+            TakeDamage(collideDamage.collideDmg);
+            StartCoroutine(DamageCoolDown(takeDamageCoolDown));
+        }
+
+
+        if (collision.gameObject.TryGetComponent(out BurstDamage burstDamage))
+        {
+            if (!canTakeDamage)
+            {
+                return;
+            }
+            canTakeDamage = false;
+
+            TakeDamage(burstDamage.burstDamage);
+
+            StartCoroutine(DamageCoolDown(takeDamageCoolDown));
+        }
+        if (collision.gameObject.TryGetComponent(out BeamDamage beamDamage))
+        {
+            if (!canTakeDamage)
+            {
+                return;
+            }
+            canTakeDamage = false;
+
+            TakeDamage(beamDamage.beamDamage);
+
+            StartCoroutine(DamageCoolDown(takeDamageCoolDown));
+        }
     }
 
     IEnumerator DamageCoolDown(float duration)

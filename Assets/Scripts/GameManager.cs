@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,6 +21,11 @@ public class GameManager : MonoBehaviour
 
     private string currentSceneName;
 
+    public static bool BossActivated;
+    public static bool IsBossDeath;
+    private bool canStartBossSound;
+    private bool canStartBossEndingSound;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -35,6 +41,12 @@ public class GameManager : MonoBehaviour
         {
             playerObject = GameObject.Find("Player");
         }
+
+        BossActivated = false;
+        canStartBossSound = true;
+
+        IsBossDeath = false;
+        canStartBossEndingSound = true;
     }
 
     private void Start()
@@ -45,14 +57,36 @@ public class GameManager : MonoBehaviour
         CurrentCheckpointPos = defaultCheckpointPos;
     }
 
+    private void Update()
+    {
+        if (BossActivated && canStartBossSound)
+        {
+            canStartBossSound = false;
+            StopSceneBGM();
+            SoundManager.BossBattle.Play();
+        }
+
+        if (IsBossDeath && canStartBossEndingSound)
+        {
+            canStartBossEndingSound = false;
+            SoundManager.BossBattle.Stop();
+            SoundManager.BossEnding.Play();
+        }
+    }
+
     public static void RestartCurrentScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1f;
     }
 
-    void BGMManager()
+    public void BGMManager()
     {
+        if (BossActivated || IsBossDeath)
+        {
+            return;
+        }
+
         switch (currentSceneName)
         {
             case "Tutorial":
@@ -61,6 +95,20 @@ public class GameManager : MonoBehaviour
             
             case "FinalizedMap":
                 SoundManager.InGame.Play(); 
+                break;
+        }
+    }
+
+    public void StopSceneBGM()
+    {
+        switch (currentSceneName)
+        {
+            case "Tutorial":
+                SoundManager.Lobby.Stop();
+                break;
+
+            case "FinalizedMap":
+                SoundManager.InGame.Stop();
                 break;
         }
     }

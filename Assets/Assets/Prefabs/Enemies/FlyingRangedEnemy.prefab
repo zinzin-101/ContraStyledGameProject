@@ -355,6 +355,8 @@ MonoBehaviour:
   receiveVerticalKnockback: 1
   enemyKnockbackScript: {fileID: 5891872062923458694}
   hitSound: {fileID: 8300000, guid: 734e6ce5a3dd79443a728de631d5dcd9, type: 3}
+  deathSound: {fileID: 8300000, guid: 9669e9640ada79a42bc3f42ddd7dc375, type: 3}
+  deathParticle: {fileID: 4439000862316776366, guid: 222b80384e94e6742a439347ab221611, type: 3}
 --- !u!114 &5891872062923458694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,6 +371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackForce: 100
   knockbackDuration: 0.2
+  spriteRenderer: {fileID: 0}
 --- !u!114 &6846660100249579560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,6 +419,7 @@ MonoBehaviour:
   bulletS: {fileID: 9036119814809654161, guid: 16f06f89230cb3f4998c14bced9212f5, type: 3}
   _bulletSpeed: 15
   aimAtPlayer: 1
+  distanceToStartSound: 10
   shootSound: {fileID: 8300000, guid: 5c101f56f86e0f64ead9d2fc58d3ab34, type: 3}
 --- !u!1 &5488583007804396146
 GameObject:

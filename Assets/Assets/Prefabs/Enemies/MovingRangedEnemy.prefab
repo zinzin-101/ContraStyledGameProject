@@ -492,6 +492,7 @@ MonoBehaviour:
   bulletS: {fileID: 9036119814809654161, guid: 16f06f89230cb3f4998c14bced9212f5, type: 3}
   _bulletSpeed: 10
   aimAtPlayer: 0
+  distanceToStartSound: 10
   shootSound: {fileID: 8300000, guid: 5c101f56f86e0f64ead9d2fc58d3ab34, type: 3}
 --- !u!114 &5995705120351569850
 MonoBehaviour:
@@ -513,6 +514,8 @@ MonoBehaviour:
   receiveVerticalKnockback: 0
   enemyKnockbackScript: {fileID: 928386804394671364}
   hitSound: {fileID: 8300000, guid: 6bc9660a1a4686b4387230e1b7656f93, type: 3}
+  deathSound: {fileID: 8300000, guid: 9669e9640ada79a42bc3f42ddd7dc375, type: 3}
+  deathParticle: {fileID: 4439000862316776366, guid: 222b80384e94e6742a439347ab221611, type: 3}
 --- !u!114 &928386804394671364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,6 +530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackForce: 100
   knockbackDuration: 0.2
+  spriteRenderer: {fileID: 0}
 --- !u!114 &294401847111237211
 MonoBehaviour:
   m_ObjectHideFlags: 0
