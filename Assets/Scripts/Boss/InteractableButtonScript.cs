@@ -7,9 +7,13 @@ public class InteractableButtonScript : MonoBehaviour
     [SerializeField] bool canReinteract = true;
     private bool canInteract;
 
+    private bool interacted;
+    public bool Interacted => interacted;
+
     private void Awake()
     {
         canInteract = true;
+        interacted = false;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -24,11 +28,13 @@ public class InteractableButtonScript : MonoBehaviour
                 {
                     canInteract = false;
                     playerInteractScript.ActiveText(false);
+                    interacted = true;
                 }
-
-                //something
-
-                Debug.Log("Interacted");
+                else
+                {
+                    StartCoroutine(ReInteractCoolDown());
+                }
+                //Debug.Log("Interacted");
             }
         }
 
@@ -41,5 +47,12 @@ public class InteractableButtonScript : MonoBehaviour
         {
             playerInteractScript.ActiveText(false);
         }
+    }
+
+    IEnumerator ReInteractCoolDown()
+    {
+        interacted = true;
+        yield return new WaitForSeconds(0.1f);
+        interacted = false;
     }
 }

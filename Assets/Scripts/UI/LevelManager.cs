@@ -54,4 +54,10 @@ public class LevelManager : MonoBehaviour
     {
         progressBar.fillAmount = Mathf.MoveTowards(progressBar.fillAmount, target, 3 * Time.deltaTime);
     }
+
+    public async void DelayLoadScene(string sceneName, float delay)
+    {
+        await Task.Delay((int)(delay * 1000));
+        LoadScene(sceneName);
+    }
 }

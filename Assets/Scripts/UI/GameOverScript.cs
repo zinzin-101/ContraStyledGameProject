@@ -59,4 +59,9 @@ public class GameOverScript : MonoBehaviour
     {
         GameManager.RestartCurrentScene();
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

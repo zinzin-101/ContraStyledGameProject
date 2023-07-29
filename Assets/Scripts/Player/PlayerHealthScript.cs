@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerHealthScript : MonoBehaviour
 {
     [SerializeField] KnockbackScript knockbackScript;
+    [SerializeField] PlayerProjectileSpawner attackScript;
 
     [SerializeField] Collider2D hitbox;
     [SerializeField] int maxPlayerHealth = 10;
@@ -30,7 +31,8 @@ public class PlayerHealthScript : MonoBehaviour
 
     private void Awake()
     {
-        TryGetComponent(out KnockbackScript knockbackScript);
+        TryGetComponent(out knockbackScript);
+        TryGetComponent(out attackScript);
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         playerHealth = maxPlayerHealth;
@@ -145,6 +147,7 @@ public class PlayerHealthScript : MonoBehaviour
         transform.position = respawnPosition;
         playerHealth = maxPlayerHealth;
         canTakeDamage = true;
+        attackScript.SetCanFire(true);
         playerAlive = true;
     }
 

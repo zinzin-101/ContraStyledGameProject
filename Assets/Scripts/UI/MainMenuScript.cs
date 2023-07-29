@@ -13,6 +13,11 @@ public class MainMenuScript : MonoBehaviour
         isClicked = false;
     }
 
+    private void Start()
+    {
+        SoundManager.Lobby.Play();
+    }
+
     private void Update()
     {
         if (Input.GetKey(KeyCode.Mouse0) && !isClicked)

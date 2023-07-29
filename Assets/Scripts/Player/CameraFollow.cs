@@ -19,6 +19,8 @@ public class CameraFollow : MonoBehaviour
     private float defaultSmoothTime;
     private Vector3 refVelocity = Vector3.zero;
 
+    [SerializeField] bool cameraLock;
+
     private void Awake()
     {
         playerObject.TryGetComponent(out playerHealthScript);
@@ -34,6 +36,11 @@ public class CameraFollow : MonoBehaviour
     void FixedUpdate()
     {
         if (!playerHealthScript.PlayerAlive)
+        {
+            return;
+        }
+
+        if (cameraLock)
         {
             return;
         }
@@ -72,5 +79,10 @@ public class CameraFollow : MonoBehaviour
         }
 
         transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref refVelocity, smoothTime);
+    }
+
+    public void SetCameraLock(bool value)
+    {
+        cameraLock = value;
     }
 }

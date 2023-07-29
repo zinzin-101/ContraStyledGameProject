@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     public GameObject CameraObject => cameraObject;
 
     public static Vector3 CurrentCheckpointPos;
+    [SerializeField] Vector3 defaultCheckpointPos;
+
+    private string currentSceneName;
 
     private void Awake()
     {
@@ -36,12 +39,29 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //placeholder bgm
-        SoundManager.InGame.Play();
+        currentSceneName = SceneManager.GetActiveScene().name;
+        BGMManager();
+
+        CurrentCheckpointPos = defaultCheckpointPos;
     }
 
     public static void RestartCurrentScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1f;
+    }
+
+    void BGMManager()
+    {
+        switch (currentSceneName)
+        {
+            case "Tutorial":
+                SoundManager.Lobby.Play();
+                break;
+            
+            case "FinalizedMap":
+                SoundManager.InGame.Play(); 
+                break;
+        }
     }
 }

@@ -129,4 +129,9 @@ public class PlayerProjectileSpawner : MonoBehaviour
         canSpawn = true;
         
     }
+
+    public void SetCanFire(bool value)
+    {
+        canSpawn = value;
+    }
 }

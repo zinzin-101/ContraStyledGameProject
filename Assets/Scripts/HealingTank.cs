@@ -13,7 +13,7 @@ public class HealingTank : MonoBehaviour
         
         if (collider.gameObject.TryGetComponent(out PlayerHealthScript _playerHealthScript)) 
         {
-            if (_playerHealthScript.PlayerAlive && _playerHealthScript.PlayerHealth < 10)
+            if (_playerHealthScript.PlayerAlive && _playerHealthScript.PlayerHealth < _playerHealthScript.MaxPlayerHealth)
             {
                 _playerHealthScript.Heal(_healAmount);
                 Destroy(gameObject);
